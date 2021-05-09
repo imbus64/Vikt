@@ -1,4 +1,5 @@
 # Vikt
+### Swedish for 'Weight'  
 **A program to keep track of body weight and retain that data in a reusable format (csv).**  
 Its secondary purpose is to teach me some Rust.  
 The CLI is not stable, and the program is barely fit for its purpose so far.  
