@@ -85,7 +85,7 @@ fn main() {
                     if confirm(&confirm_msg) {
                         log.add_weight(weight);
                         println!("{}", "Successfully added".green().bold());
-                        log.print_table(None);
+                        log.print_table(Some(DEFAULT_DISPLAY_NO));
                     }
                 }
                 Err(what) => println!("Could not parse weight: {}.", what),
@@ -93,13 +93,18 @@ fn main() {
         }
 
         RunMode::Print => {
+            if log.empty() {
+                println!("The log is empty. Show help [-h] for more info.")
+            }
             match print_mode {
                 PrintStyle::Table => {
                     match list_flag {
                         true => log.print_table(None), // None means unspecified, which prints all
                         false => {
-                            println!("Showing the latest {} entries...", DEFAULT_DISPLAY_NO);
-                            log.print_table(Some(5));
+                            if log.weight_list.len() > 0 {
+                                println!("Showing the latest {} entries...", DEFAULT_DISPLAY_NO);
+                                log.print_table(Some(DEFAULT_DISPLAY_NO));
+                            }
                         }
                     }
                 }
@@ -108,13 +113,4 @@ fn main() {
             }
         }
     }
-
-    // match log.max {
-    //     Some(value) => println!("Maximum: {} kg", value),
-    //     None => {}
-    // }
-    // match log.min {
-    //     Some(value) => println!("Minimum: {} kg", value),
-    //     None => {}
-    // }
 }

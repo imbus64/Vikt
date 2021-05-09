@@ -31,7 +31,7 @@ with the cell format:
 
 ### Roadmap
 Planned features are:
-- [ ] Rewrite parsing method
+- [x] Rewrite parsing method
 - [ ] Summary print, averages e.t.c.
 - [ ] OCI/Docker image for quick testing
 - [ ] Some sort of config file, to allow for custom csv path e.t.c.
