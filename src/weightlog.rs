@@ -90,7 +90,23 @@ impl WeightlogT {
         return newlog;
     }
 
+    /// Simple if empty check
     pub fn empty(&self) -> bool { self.weight_list.is_empty() }
+
+    /// Simple len check 
+    pub fn len(&self) -> usize {
+        self.weight_list.len()
+    }
+    
+    /// Returns time in days since first entry, this float is not rounded
+    pub fn age(&self) -> f32 {
+        match self.empty() {
+            true => 0.0,
+            false => { 
+                (Local::now() - self.weight_list.first().unwrap().time).num_hours() as f32/24.0
+            }
+        }
+    }
 
     /// Prints each log entry with the WeightT fmt implementation
     /// This should be readable enough for a human. Does not do any alignment.
